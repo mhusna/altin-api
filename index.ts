@@ -10,7 +10,7 @@ const api_key = "sk_live_5be53d8932367c71280c9902da4406310ab52b3bf34eb9679dafd47
 // Define your routes
 app.get('/', async (request, response) => {
 
-  const res = await axios.get("https://hedef-api.com/endpoint", {
+  const res = await axios.get("https://rest.datshop.com.tr/api/prices", {
     headers: {
       "Authorization": `Bearer ${api_key}`
     }
