@@ -1,6 +1,9 @@
 // Use "type: module" in package.json to use ES modules
-import express from 'express';
+import express from "express";
+import cors from "cors";
+
 const app = express();
+app.use(cors());
  
 // Define your routes
 app.get('/', (req, res) => {
