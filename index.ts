@@ -9,7 +9,7 @@ const API_KEY = "sk_live_5be53d8932367c71280c9902da4406310ab52b3bf34eb9679dafd47
 
 const client = axios.create({
   baseURL: "https://rest.datshop.com.tr",
-  timeout: 5000, // ⏱️ 5 saniye
+  timeout: 15000, // ⏱️ 5 saniye
   headers: {
     "x-socket-key": API_KEY
   }
