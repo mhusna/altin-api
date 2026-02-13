@@ -8,21 +8,31 @@ app.use(cors());
 
 const api_key = "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";
 // Define your routes
-app.get('/', async (request, response) => {
+app.get("/", async (req, res) => {
   try {
-    const res = await axios.get("https://rest.datshop.com.tr/api/prices", {
-      headers: {
-        "Authorization": `Bearer ${api_key}`
+    const result = await axios.get(
+      "https://rest.datshop.com.tr/api/prices",
+      {
+        timeout: 5000,
+        headers: {
+          Authorization: `Bearer ${api_key}`,
+        },
       }
-    });
+    );
 
-    console.log(res.status);
-    console.log(res.data);
-    response.json({ data: res.data });
-  } catch (error) {
-    console.error('API Error:', error);
-    response.status(500).json({ error: 'Failed to fetch data' });
+    res.json(result.data);
+  } catch (err) {
+    console.error(err.code || err.message);
+
+    res.status(502).json({
+      error: "Upstream API not responding",
+      detail: err.code,
+    });
   }
+});
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
 // Start the server
