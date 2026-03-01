@@ -3,7 +3,11 @@ import cors from "cors";
 import axios from "axios";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 const API_KEY = "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";
 
